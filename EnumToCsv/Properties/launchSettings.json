@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "EnumToCsv": {
+      "commandName": "Project",
+      "commandLineArgs": "\"enum.txt\" \"csv.csv\""
+    }
+  }
+}

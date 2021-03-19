@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "CsvToEnum": {
+      "commandName": "Project",
+      "commandLineArgs": "\"csv.csv\" \"enum.cs\" \"TestNamespace\" \"ZdarzenieRodzaj\" \"|\""
+    }
+  }
+}
