@@ -2,7 +2,7 @@
   "profiles": {
     "CsvToEnum": {
       "commandName": "Project",
-      "commandLineArgs": "\"csv.csv\" \"enum.cs\" \"TestNamespace\" \"ZdarzenieRodzaj\" \"|\""
+      "commandLineArgs": "\"csv.csv\" \"configuration.xml\""
     }
   }
 }
