@@ -2,7 +2,7 @@
   "profiles": {
     "CsvToEnum": {
       "commandName": "Project",
-      "commandLineArgs": "\"csv.csv\" \"configuration.xml\""
+      "commandLineArgs": "\"csv.csv\" \"configuration.xml\" \"output.cs\""
     }
   }
 }

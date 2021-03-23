@@ -27,7 +27,7 @@ namespace CsvToEnum
         {
             var csvFile = args[0];
             var configurationFile = args[1];
-
+            var outputFile = args[2];
 
             var document = new XmlDocument();
             document.Load(configurationFile);
@@ -54,15 +54,14 @@ namespace CsvToEnum
                 currentLine = streamReader.ReadLine();
                 var record = new Record(currentLine.Split(separator).ToList(), columns);
 
-                Dictionary<string, string> d = new Dictionary<string, string>();
-                for (int i = 0; i < columns.Count; i++)
+                var d = new Dictionary<string, string>();
+                foreach (var column in columns)
                 {
-                    var currentColumn = columns[i];
-                    var valueInCurrentColumn = record.Values[currentColumn.Index];
-                    d.Add(currentColumn.Name, valueInCurrentColumn);
+                    var valueInCurrentColumn = record.Values[column.Index];
+                    d.Add(column.Name, valueInCurrentColumn);
                 }
 
-                var everyRowEdited = ReplaceTextInCurlyBracets(everyRow, d);
+                var everyRowEdited = ReplaceKeyFromCurlyBracets(everyRow, d);
                 stringBuilder.AppendLine("\t"+everyRowEdited);
                 var propName = record.Values[propNameColumn.Index];
                 var value = record.Values[valueColumn.Index];
@@ -71,9 +70,10 @@ namespace CsvToEnum
 
             stringBuilder.Append(footer);
             Console.WriteLine(stringBuilder);
+            File.WriteAllText(outputFile, stringBuilder.ToString());
         }
 
-        private static string ReplaceTextInCurlyBracets(string text, Dictionary<string, string> dictionary)
+        private static string ReplaceKeyFromCurlyBracets(string text, Dictionary<string, string> dictionary)
         {
             var result = text;
             foreach (var kvp in dictionary)
